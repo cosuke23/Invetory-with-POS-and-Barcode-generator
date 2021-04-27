@@ -1,0 +1,235 @@
+<!-- start: Css -->
+
+  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="asset/css/jquery.ui.min.css">
+
+  <link rel="stylesheet" type="text/css" href="asset/css/style.css">
+
+  
+
+   <!-- plugins -->
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/codemirror.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/datatables.bootstrap.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/dropzone.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/fullcalendar.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/handsontable.full.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/hover.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/jquery.steps.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/mediaelementplayer.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/normalize.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/nouislider.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/select2.min.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/simple-line-icons.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/spinkit.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/summernote.css"/>
+
+   <link rel="stylesheet" type="text/css" href="asset/css/plugins/typebase.css"/>
+
+    <!--End of plugins -->
+
+	
+
+   <!--ionrangeslider folder-->
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/ionrangeslider/ion.rangeSlider.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/ionrangeslider/ion.rangeSlider.skinFlat.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/ionrangeslider/ion.rangeSlider.skinHTML5.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/ionrangeslider/ion.rangeSlider.skinModern.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/ionrangeslider/ion.rangeSlider.skinNice.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/ionrangeslider/ion.rangeSlider.skinSimple.css"/>
+
+  <!--<link rel="stylesheet" type="text/css" href="asset/css/plugins/ionrangeslider/normalize.css"/>-->
+
+ 
+
+ <!--import all from skins-->
+
+ <link rel="stylesheet" type="text/css" href="asset/css/plugins/ichecks/skins/all.css"/>
+
+  <!--end of import all from skins-->
+
+  
+
+  <!-- end: Css -->
+
+
+
+  <link rel="shortcut icon" href="asset/img/logomi.png">
+
+  
+
+     <!-- end: Content -->
+
+	  
+
+      <!-- start: Javascript -->
+
+	<script src="asset/js/bootstrap.min.js"></script>
+
+	<script src="asset/js/jquery.min.js"></script>
+
+	<script src="asset/js/jquery.ui.min.js"></script>
+
+	<script src="asset/js/main.js"></script>
+
+	
+
+	<!-- plugins -->
+
+	<script src="asset/js/plugins/bootstrap-material-datetimepicker.js"></script>
+
+	<script src="asset/js/plugins/chart.min.js"></script>
+
+	<script src="asset/js/plugins/codemirror.js"></script>
+
+	<script src="asset/js/plugins/jquery.knob.js"></script>
+
+	<script src="asset/js/plugins/datatables.bootstrap.min.js"></script>
+
+	<script src="asset/js/plugins/dropzone.js"></script>
+
+	<script src="asset/js/plugins/fullcalendar.min.js"></script>
+
+	<script src="asset/js/plugins/handsontable.full.min.js"></script>
+
+	<script src="asset/js/plugins/holder.min.js"></script>
+
+	<script src="asset/js/plugins/html5shiv.js"></script>  
+
+    <script src="asset/js/icheck.min.js"></script>
+
+    <script src="asset/js/ie9.js"></script>
+
+    <script src="asset/js/imagesloaded.pkgd.min.js"></script>
+
+    <script src="asset/js/ion.rangeSlider.min.js"></script>
+
+    <script src="asset/js/plugins/jquery.datatables.min.js"></script>
+
+	<script src="asset/js/plugins/jquery.flot.min.js"></script>
+
+	<script src="asset/js/plugins/jquery.knob.js"></script>
+
+	<script src="asset/js/plugins/jquery.mask.min.js"></script>
+
+	<script src="asset/js/plugins/jquery.mobile-1.4.5.min.js"></script>
+
+	<script src="asset/js/plugins/jquery.nicescroll.js"></script>
+
+	<script src="asset/js/plugins/jquery.sparkline.min.js"></script>
+
+	<script src="asset/js/plugins/jquery.steps.min.js"></script>
+
+	<script src="asset/js/plugins/jquery.validate.min.js"></script>
+
+	<script src="asset/js/plugins/masonry.pkgd.min.js"></script>
+
+	<script src="asset/js/plugins/mediaelement-and-player.min.js"></script>
+
+	<script src="asset/js/plugins/moment.min.js"></script>
+
+	<script src="asset/js/plugins/morris.min.js"></script>
+
+	<script src="asset/js/plugins/nouislider.min.js"></script>
+
+	<script src="asset/js/plugins/raphael.min.js"></script>
+
+	<script src="asset/js/plugins/respond.min.js"></script>
+
+	<script src="asset/js/plugins/select2.full.min.js"></script>
+
+	<script src="asset/js/plugins/summernote.min.js"></script>
+
+
+
+ <!--End of ionrangeslider folder-->
+
+  
+
+  <!--skin/flat folder-->
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/_all.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/aero.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/blue.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/flat.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/green.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/grey.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/orange.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/pink.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/purple.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/red.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/flat/yellow.css"/>
+
+  <!--End of skin/flat folder-->
+
+  
+
+  <!--skin/futorico folder-->
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/futorico/futurico.css"/>
+
+  <!--End of skin/futorico folder-->
+
+  
+
+   <!--skin/line folder-->
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/_all.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/aero.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/blue.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/green.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/grey.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/line.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/orange.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/pink.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/purple.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/red.css"/>
+
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/icheck/skins/line/yellow.css"/>
+
+  <!--End of skin/line folder-->

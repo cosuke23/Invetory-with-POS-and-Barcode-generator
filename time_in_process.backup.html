@@ -1,0 +1,172 @@
+<?php
+date_default_timezone_set('Asia/Manila');
+// require the sql connection..
+require 'assets/connection/mysqli_dbconnection.php';
+
+if(isset($_POST['btn_time']))
+{
+	$stud_no = mysqli_real_escape_string($dbc, trim($_POST['stud_no']));
+	$acad_year_start = mysqli_real_escape_string($dbc, trim($_POST['acad_year_start']));
+	$acad_year_end = mysqli_real_escape_string($dbc, trim($_POST['acad_year_end']));
+	$semester = mysqli_real_escape_string($dbc, trim($_POST['semester']));
+	$category_id = mysqli_real_escape_string($dbc, trim($_POST['category_id']));
+	$date_sub = mysqli_real_escape_string($dbc, trim($_POST['date_sub']));
+	
+	$hour = mysqli_real_escape_string($dbc, trim($_POST['hour']));
+	$minute = mysqli_real_escape_string($dbc, trim($_POST['minute']));
+	$merindian = mysqli_real_escape_string($dbc, trim($_POST['ampm']));
+	$time_in = $hour.":".$minute." ".$merindian;
+	
+	//--SELECT time_in , time_out--//
+	$query_select_time = "SELECT time_in, time_out FROM dtr WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester' AND date_submitted='$date_sub' ORDER BY id DESC";
+	$result_select_time = mysqli_query($dbc, $query_select_time);
+	if(mysqli_num_rows($result_select_time)>0)
+	{
+		$row_select = mysqli_fetch_assoc($result_select_time);
+		$s_timein = $row_select['time_in'];
+		$s_timeout = $row_select['time_out'];
+	}
+	//--VALIDATE if time_out == null--//
+	if($s_timein != "" AND $s_timeout == "")
+	{
+		$query_check_date = "SELECT * FROM dtr WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester' AND category_id='$category_id' ORDER BY id DESC";
+		$result_check_date = mysqli_query($dbc, $query_check_date);
+		if(mysqli_num_rows($result_check_date)>0)
+		{
+			$row = mysqli_fetch_assoc($result_check_date);
+			$time_in_new = $row['time_in'];
+		}
+			
+		$unix_timein_new = strtotime($time_in_new);
+		$unix_timeout_new = strtotime($time_in);
+
+		//--VALIDATION--//
+		if($unix_timein_new <= $unix_timeout_new)
+		{
+			$query_select_dtr_id = "SELECT * FROM dtr WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester' ORDER BY id DESC";
+			$result_select_dtr_id = mysqli_query($dbc, $query_select_dtr_id);
+			if(mysqli_num_rows($result_select_dtr_id)>0)
+			{
+				$row_dtr = mysqli_fetch_assoc($result_select_dtr_id);
+				$time_in_nw = $row_dtr['time_in'];
+				$dtr_id = $row_dtr['dtr_id'];
+				$id = $row_dtr['id'];
+			}
+
+			$unix_timein = strtotime($time_in_nw);
+			$unix_timeout = strtotime($time_in);
+
+			$input_minutes = ($unix_timeout - $unix_timein)/60;
+
+			$query_insert_timeout = "UPDATE dtr SET input_minutes='$input_minutes', time_out='$time_in' WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester' AND dtr_id='$dtr_id' AND id = $id";
+			$result_insert_timeout = mysqli_query($dbc, $query_insert_timeout);
+			
+			if($result_select_dtr_id == true && $result_insert_timeout == true)
+			{
+				header("Location: date.php?msg2=1");
+				exit;
+			}
+		}
+		else
+		{
+			header("Location: time.php?stud_no=$stud_no&acad_year_start=$acad_year_start&acad_year_end=$acad_year_end&semester=$semester&category_id=$category_id&date_sub=$date_sub&time2=1&msg=1");
+		}
+	}
+	//--Insert dtr--//
+	else
+	{
+		$query_check_date = "SELECT * FROM dtr WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester' AND category_id='$category_id' AND date_submitted='$date_sub' ORDER BY id DESC";
+		$result_check_date = mysqli_query($dbc, $query_check_date);
+		if(mysqli_num_rows($result_check_date)>0)
+		{
+			$row = mysqli_fetch_assoc($result_check_date);
+			$time_out = $row['time_out'];
+		}
+		if($time_out == "")
+		{
+			//--SELECT comp_id--//
+			$query_select_comp_id = "SELECT * FROM company_ojt_student WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester'";
+			$result_select_comp_id = mysqli_query($dbc, $query_select_comp_id);
+			if(mysqli_num_rows($result_select_comp_id)>0)
+			{
+				$row = mysqli_fetch_assoc($result_select_comp_id);
+				$comp_id = $row['comp_id'];
+			}
+			//-- ++dtr_id; --//
+			$query_incrmnt = "SELECT MAX(dtr_id) FROM dtr";
+			$result_incrmnt = mysqli_query($dbc, $query_incrmnt);
+			if(mysqli_num_rows($result_incrmnt)>0)
+			{
+				$row_incrmnt = mysqli_fetch_assoc($result_incrmnt);
+				$dtr_id2 = $row_incrmnt['MAX(dtr_id)']+1;
+			}
+			//---INSERT INTO---//
+			$query_insert_dtr = "INSERT INTO dtr(stud_no, category_id, time_in, remarks, acad_year_start, acad_year_end, semester, dtr_id, date_submitted, comp_id) VALUES('$stud_no', '$category_id', '$time_in', 'Pending', '$acad_year_start', '$acad_year_end', '$semester', '$dtr_id2', '$date_sub', $comp_id)";
+			$result_insert_dtr = mysqli_query($dbc, $query_insert_dtr);
+			
+			if($result_select_comp_id == true && $result_insert_dtr == true)
+			{
+				header("Location: date.php?msg2=1");
+				exit;
+			}
+			else
+			{
+				echo "ERROR: select_comp_id, insert_dtr";
+			}
+		}
+		//--INSERT NEW DTR--//
+		else
+		{
+			$query_check_date = "SELECT * FROM dtr WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester' AND category_id='$category_id' AND date_submitted='$date_sub' ORDER BY id DESC";
+			$result_check_date = mysqli_query($dbc, $query_check_date);
+			if(mysqli_num_rows($result_check_date)>0)
+			{
+				$row = mysqli_fetch_assoc($result_check_date);
+				$time_out = $row['time_out'];
+			}
+			
+			$unix_timein_nw = strtotime($time_in);
+			$unix_timeout_nw = strtotime($time_out);
+
+			//--VALIDATION--//
+			if($unix_timeout_nw >= $unix_timein_nw)
+			{
+				header("Location: time.php?stud_no=$stud_no&acad_year_start=$acad_year_start&acad_year_end=$acad_year_end&semester=$semester&category_id=$category_id&date_sub=$date_sub&time=1&msg=1");
+			}
+			else
+			{
+				//--SELECT comp_id--//
+				$query_select_comp_id = "SELECT * FROM company_ojt_student WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester'";
+				$result_select_comp_id = mysqli_query($dbc, $query_select_comp_id);
+				if(mysqli_num_rows($result_select_comp_id)>0)
+				{
+					$row = mysqli_fetch_assoc($result_select_comp_id);
+					$comp_id = $row['comp_id'];
+				}
+				//-- SELECT dtr_id --//
+				$query_in = "SELECT dtr_id FROM dtr WHERE stud_no='$stud_no' AND acad_year_start='$acad_year_start' AND acad_year_end='$acad_year_end' AND semester='$semester' AND date_submitted='$date_sub' ORDER BY id DESC";
+				$result_in = mysqli_query($dbc, $query_in);
+				if(mysqli_num_rows($result_in)>0)
+				{
+					$row_in = mysqli_fetch_assoc($result_in);
+					$dtr_id2 = $row_in['dtr_id'];
+				}
+				//---INSERT INTO---//
+				$query_insert_dtr = "INSERT INTO dtr(stud_no, category_id, time_in, remarks, acad_year_start, acad_year_end, semester, dtr_id, date_submitted, comp_id) VALUES('$stud_no', '$category_id', '$time_in', 'Pending', '$acad_year_start', '$acad_year_end', '$semester', '$dtr_id2', '$date_sub', $comp_id)";
+				$result_insert_dtr = mysqli_query($dbc, $query_insert_dtr);
+				
+				if($result_select_comp_id == true && $result_insert_dtr == true)
+				{
+					header("Location: date.php?msg2=1");
+					exit;
+				}
+				else
+				{
+					echo "ERROR: select_comp_id, insert_dtr";
+				}
+			}
+		}
+	}
+}
+
+?>
